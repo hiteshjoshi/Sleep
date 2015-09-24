@@ -1,8 +1,8 @@
 package Sleep
 
 import (
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 // Model struct represents a collection in MongoDB.
@@ -11,7 +11,7 @@ import (
 type Model struct {
 	*mgo.Collection
 	//C is the underlying mgo.collection value for this model.
-	//Refer to http://godoc.org/labix.org/v2/mgo#Collection for full usage information
+	//Refer to http://godoc.org/gopkg.in/mgo.v2#Collection for full usage information
 	C *mgo.Collection
 	z *Sleep
 }
@@ -39,7 +39,7 @@ func (m *Model) CreateDoc(i interface{}) {
 // The map may be a generic one using interface{} for its key and/or values, such as bson.M, or it may be a properly typed map.
 // Providing nil as the document is equivalent to providing an empty document such as bson.M{}".
 //
-// Further reading: http://godoc.org/labix.org/v2/mgo#Collection.Find
+// Further reading: http://godoc.org/gopkg.in/mgo.v2#Collection.Find
 func (m *Model) Find(query interface{}) *Query {
 	return &Query{query: query, z: m.z,
 		populate:  make(map[string]*Query),
@@ -60,7 +60,7 @@ func (m *Model) FindId(id interface{}) *Query {
 // RemoveId removes a document from the collection based on its _id field.
 // Same as mgo.Collection.RemoveId, except that it accepts the Id as a string or bson.ObjectId
 //
-// See http://godoc.org/labix.org/v2/mgo#Collection.RemoveId
+// See http://godoc.org/gopkg.in/mgo.v2#Collection.RemoveId
 func (m *Model) RemoveId(id interface{}) error {
 	return m.C.RemoveId(getObjectId(id))
 }
@@ -68,7 +68,7 @@ func (m *Model) RemoveId(id interface{}) error {
 // UpdateId updates a document in the collection based on its _id field.
 // Same as mgo.Collection.UpdateId, except that it accepts the Id as a string or bson.ObjectId
 //
-// See http://godoc.org/labix.org/v2/mgo#Collection.UpdateId
+// See http://godoc.org/gopkg.in/mgo.v2#Collection.UpdateId
 func (m *Model) UpdateId(id interface{}, change interface{}) error {
 	return m.C.UpdateId(getObjectId(id), change)
 }
@@ -76,7 +76,7 @@ func (m *Model) UpdateId(id interface{}, change interface{}) error {
 // UpsertId updates or inserts a document in the collection based on its _id field.
 // Same as mgo.Collection.UpsertId, except that it accepts the Id as a string or bson.ObjectId
 //
-// See http://godoc.org/labix.org/v2/mgo#Collection.UpsertId
+// See http://godoc.org/gopkg.in/mgo.v2#Collection.UpsertId
 func (m *Model) UpsertId(id interface{}, change interface{}) (*mgo.ChangeInfo, error) {
 	return m.C.UpsertId(getObjectId(id), change)
 }

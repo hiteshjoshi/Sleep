@@ -2,8 +2,8 @@ package Sleep
 
 import (
 	"fmt"
-	"labix.org/v2/mgo"
-	"labix.org/v2/mgo/bson"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 	"reflect"
 	"strings"
 )
@@ -331,7 +331,7 @@ func (q *Query) Limit(lim int) *Query {
 //		query3 := sleep.Find(nil).Sort("$natural")
 //
 //
-// Further reading: http://godoc.org/labix.org/v2/mgo#Query.Sort
+// Further reading: http://godoc.org/gopkg.in/mgo.v2#Query.Sort
 func (q *Query) Sort(fields ...string) *Query {
 	q.sort = fields
 	return q
